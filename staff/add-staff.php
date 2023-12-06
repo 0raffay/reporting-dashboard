@@ -1,21 +1,21 @@
 <?php
 // Includes Global Site URL;
-include("includes/site-info.php");
+include("../includes/site-info.php");
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Staff</title>
+    <title>Add Staff</title>
 
     <!-- Compatibility -->
-    <?php include("includes/compatibility.php"); ?>
+    <?php include("../includes/compatibility.php"); ?>
     <!-- Compatibility -->
 
 
     <!-- styles start -->
-    <?php include("includes/header-styles.php"); ?>
+    <?php include("../includes/header-styles.php"); ?>
     <!-- styles end -->
 
 </head>
@@ -26,7 +26,7 @@ include("includes/site-info.php");
     <div id="wrapper">
 
         <!-- Navigation Bar-->
-        <?php include("includes/header.php"); ?>
+        <?php include("../includes/header.php"); ?>
         <!-- End Navigation Bar-->
 
         <!-- ============================================================== -->
@@ -40,7 +40,7 @@ include("includes/site-info.php");
 
                     <!-- PAGE HEADING -->
                     <div class="page-heading-wrapper">
-                        <h1 class="text-center page-heading mb-5">Staff</h1>
+                        <h1 class="text-center page-heading mb-5">Add Staff</h1>
                     </div>
                     <!-- PAGE HEADING -->
 
@@ -50,7 +50,7 @@ include("includes/site-info.php");
                         <div class="row">
                             <div class="col-12">
                                 <div>
-                                    <h4 class="header-title mb-4 ">Staff Details</h4>
+                                    <h4 class="header-title mb-4 ">Add Staff Details</h4>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@ include("includes/site-info.php");
 
 
                         <form class="form-horizontal">
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label class="col-md-2 col-form-label" for="contract_function">Select staff Function</label>
                                 <div class="col-md-10">
                                     <select id="contract_function" class="form-control">
@@ -70,8 +70,8 @@ include("includes/site-info.php");
                                         <option>5</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="form-group row">
+                            </div> -->
+                            <!-- <div class="form-group row">
                                 <label class="col-md-2 col-form-label" for="staff_select">Select Staff</label>
                                 <div class="col-md-10">
                                     <select id="staff_select" class="form-control">
@@ -82,7 +82,7 @@ include("includes/site-info.php");
                                         <option>Staff 5</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->  
 
 
                             <div class="form-group row">
@@ -94,13 +94,13 @@ include("includes/site-info.php");
                             <div class="form-group row">
                                 <label for="staff_email" class="col-md-2 control-label"> Email Address</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="staff_email">
+                                    <input type="email" class="form-control" id="staff_email">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="staff_phone" class="col-md-2 control-label"> Mobile Number</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="staff_phone">
+                                    <input type="number" class="form-control" id="staff_phone">
                                 </div>
                             </div>
 
@@ -117,7 +117,7 @@ include("includes/site-info.php");
                             <!-- button -->
                             <div class="form-group btn-form-group row mb-0 pt-4">
                                 <div class="col-md-7 m-auto">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100 d-block">Update</button>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 d-block">Add Staff</button>
                                 </div>
                             </div>
                             <!-- button -->
@@ -127,7 +127,7 @@ include("includes/site-info.php");
                     <!-- end container-fluid -->
 
                     <!-- Footer Start -->
-                    <?php include("includes/footer.php"); ?>
+                    <?php include("../includes/footer.php"); ?>
                     <!-- end Footer -->
                 </div>
                 <!-- end content -->
@@ -137,14 +137,14 @@ include("includes/site-info.php");
         <!-- END wrapper -->
 
         <!-- Right Sidebar -->
-        <?php //include("includes/right-bar.php"); 
+        <?php //include("../includes/right-bar.php"); 
         ?>
         <!-- /Right-bar -->
 
 
 
         <!-- Scripts start -->
-        <?php include("includes/footer-scripts.php"); ?>
+        <?php include("../includes/footer-scripts.php"); ?>
         <!-- Scripts end-->
 
 </body>

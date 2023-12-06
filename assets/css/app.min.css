@@ -1420,9 +1420,6 @@ body[data-layout=horizontal].enlarged {
         display: none !important
     }
 
-    #navigation {
-        display: block !important
-    }
 }
 
 @media (max-width:767.98px) {
@@ -1558,7 +1555,7 @@ body[data-layout=horizontal].enlarged {
         top: 90px;
         left: 0;
         width: 100%;
-        display: none;
+        /* display: none; */
         height: auto;
         padding-bottom: 0;
         overflow: auto;
@@ -4077,7 +4074,7 @@ h3.timeline-title {
 
 .logo img {
     position: relative;
-    top: -10px;
+    /* top: -10px; */
 }
 
 :where(select, input, textarea):hover {
@@ -4166,3 +4163,127 @@ th {
 
 }
 
+/* MOBILE MENU START */
+.mobileMenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /* height: 100vh; */
+    padding: 30px;
+    width: max(50%, 385px);
+    background: #FFF;
+    border-right: 1px solid #e7e7e7;
+
+    transform: translateX(-100%);
+    transition: transform 400ms ease;
+    z-index: 102381123;
+}
+
+.rf--mobile-submenu,
+ul.mobile__list {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.mobileMenu.active {
+    transform: translateX(0);
+}
+
+.mobileMenuHeader {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 40px;
+}
+
+.mobileMenuClose i {
+    color: #000;
+    font-size: 2rem;
+}
+
+.mobile__list li a {
+    color: #000;
+}
+
+.mobile__list li {
+    padding: 10px 0;
+    list-style: none;
+}
+
+.mobile__list li:not(:nth-last-of-type(1)) {
+    border-bottom: 1px solid #ddd;
+}
+
+.rf--mobileSubmenu-button.active .closeIcon,
+.rf--mobileSubmenu-button .openIcon {
+    display: none;
+}
+
+.rf--mobileSubmenu-button.active .openIcon {
+    display: block;
+}
+
+.mobileMenuClose button {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    color: #000;
+}
+
+
+.rf--mobileSubmenu-button {position: relative;}
+.rf--mobileSubmenu-button span {
+    position: absolute;
+    right: 1px;
+    top: 16px;
+
+}
+
+@media only screen and (max-width: 1280px) {
+    
+    #navigation {
+        display: none !important
+    }
+    #topnav .navbar-toggle {
+        display: block !important;
+    }
+
+    #navigation {
+        display: none !important;
+    }
+
+    .mobileMenu {
+        display: block;
+    }
+}
+.dt-buttons {
+    gap: 10px;
+}
+
+.dt-buttons button:hover,
+.dt-buttons button {
+    opacity: 1;
+    background: var(--clr-primary) !important;
+    border: 1px solid #fff !important;
+    outline: none;
+    box-shadow: none;
+    position: relative;
+
+
+}
+
+
+.dt-buttons button::after {
+    font-family: themify;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "\e62a";
+    margin-left: 10px;
+}
