@@ -18,7 +18,6 @@ if (isset($_POST["user_signout"])) {
 
 
 if (isset($_SESSION['user'])) {
-
     $userPermissions = [
         'client' => isset($_SESSION['user']['client']) ? $_SESSION['user']['client'] : null,
         'contracts' => isset($_SESSION['user']['contracts']) ? $_SESSION['user']['contracts'] : null,
@@ -177,7 +176,7 @@ if (isset($_SESSION['user'])) {
                             </a>
                             <ul class="submenu">
                                 <li><a href="users/create-user.php">Create User</a></li>
-                                <li><a href="view-users.php">View All Users</a></li>
+                                <li><a href="users/view-users.php">View All Users</a></li>
                             </ul>
                         </li>
                         <!-- <li class="has-submenu">
@@ -190,15 +189,21 @@ if (isset($_SESSION['user'])) {
 
                 </ul>
                 <!-- End navigation menu -->
-                <div id="user_info" class="d-flex gap-10 align-items-center">
-                    <h6 class="text-white my-0 text-uppercase">
-                        User Name:
-                        <span class="text-capitalize">
-                            <?php echo $username; ?>
-                        </span>
-                    </h6>
+                <div id="user_info" class="d-flex gap-20 align-items-center">
+                    <div>
+                        <h6 class="text-white my-0 text-uppercase mr-2">
+                            User Name: <br>
+                            <span class="text-capitalize">
+                                <?php echo $username; ?>
+                            </span>
+                        </h6>
+                       
+                    </div>
                     <form action="" method="post">
-                        <button type="submit" class="btn btn-danger" name="user_signout">Logout</button>
+                        <div class="">
+                            <a class="btn btn-white d-block mb-1 w-100" href="users/edit-user.php?id=<?php echo $_SESSION["user"]["id"];?>">Edit Profile</a>
+                            <button type="submit" class="btn btn-danger d-block w-100" name="user_signout">Logout</button>
+                        </div>
                     </form>
                 </div>
                 <div class="clearfix"></div>

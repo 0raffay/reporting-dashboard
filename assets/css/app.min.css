@@ -4215,6 +4215,17 @@ ul.mobile__list {
     border-bottom: 1px solid #ddd;
 }
 
+.rf--mobileSubmenu-button a {
+    padding: 10px 0;
+    display: block;
+}
+
+.rf--mobile-submenu,
+.rf--mobileSubmenu-button {
+    position: relative;
+    padding: 0 !important;
+}
+
 .rf--mobileSubmenu-button.active .closeIcon,
 .rf--mobileSubmenu-button .openIcon {
     display: none;
@@ -4241,7 +4252,7 @@ ul.mobile__list {
 
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1660px) {
     
     #navigation {
         display: none !important
@@ -4286,4 +4297,14 @@ ul.mobile__list {
     -webkit-font-smoothing: antialiased;
     content: "\e62a";
     margin-left: 10px;
+}
+
+.btn-white {
+    background: #FFF;
+    outline: 1px solid #e7e7e7;
+    color: #000;
+}
+
+.fw-700 {
+    font-weight: 700;
 }

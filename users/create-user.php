@@ -2,7 +2,7 @@
 session_start();
 // Includes Global Site URL;
 include("../includes/site-info.php");
-
+$error = "";
 if (isset($_POST["create_user"])) {
     $postData = [
         'empId' => $_POST['empId'],
@@ -37,9 +37,9 @@ if (isset($_POST["create_user"])) {
         $response = json_decode($apiResponse, true);
 
         if (isset($responseData['error']) && $responseData['error']) {
-            echo 'Error creating user: ' . $responseData['message'];
+            $error = 'Error creating user: ' . $responseData['message'];
         } else {
-            echo 'User created successfully.';
+            $error = 'User created successfully.';
         }
     }
 
@@ -101,7 +101,7 @@ if (isset($_POST["create_user"])) {
                         <!-- end row -->
 
 
-                        <form class="form-horizontal">
+                        <form class="form-horizontal"  action="" method="post">
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label" for="empId">Empolyee Id:</label>
                                 <div class="col-md-10">
@@ -134,7 +134,7 @@ if (isset($_POST["create_user"])) {
                             <div class="form-group row">
                                 <!-- Rights checkboxes -->
                                 <label class="col-md-2 col-form-label">Rights to Give:</label>
-                                <div class="col-md-10">
+                                <div class="col-md-10 row gap-10 align-items-center">
 
 
 
@@ -185,7 +185,11 @@ if (isset($_POST["create_user"])) {
                                 </div>
                             </div>
 
-
+                            <p class="text-success text-bold font-bold fw-700 text-center">
+                                <?php
+                                echo $error;
+                                ?>
+                            </p>
 
                             <!-- button -->
                             <div class="form-group btn-form-group row mb-0 pt-4">
