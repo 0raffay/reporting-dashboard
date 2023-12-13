@@ -1,11 +1,49 @@
 <?php
+session_start();
 
+if (isset($_SESSION['user'])) {
+    header("location: dashboard");
+    exit();
+}
 // Includes Global Site URL;
 include("includes/site-info.php");
 
 if (isset($_POST["user_signin"])) {
-    header("location: dashboard");
+    $postData = ['email' => $_POST['email'], 'password' => $_POST['password']];
+
+    $apiEndpoint = 'http://localhost/reporting-dashboard/api/users/login.php';
+    $request = curl_init($apiEndpoint);
+
+    curl_setopt($request, CURLOPT_POST, 1);
+    curl_setopt($request, CURLOPT_POSTFIELDS, http_build_query($postData));
+    curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
+
+    $headers = array(
+        "Content-Type: application/x-www-form-urlencoded",
+    );
+    curl_setopt($request, CURLOPT_HTTPHEADER, $headers);
+
+    $apiResponse = curl_exec($request);
+
+    if (curl_errno($request)) {
+        echo 'Error: ' . curl_error($request);
+    } else {
+
+        $response = json_decode($apiResponse, true);
+
+        if ($response && $response['success']) {
+            $_SESSION['user'] = $response['user'];
+
+            header("location: dashboard");
+            exit();
+        } else {
+            echo 'Login failed. Please check your credentials.';
+        }
+    }
+
+    curl_close($request);
 }
+
 ?>
 
 
@@ -43,12 +81,12 @@ if (isset($_POST["user_signin"])) {
                             <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>" class="p-2">
                                 <div class="form-group no-box-shadow">
                                     <label for="emailaddress">Email address</label>
-                                    <input class="form-control" type="email" id="emailaddress" required="" placeholder="john@deo.com">
+                                    <input class="form-control" name="email" type="email" id="emailaddress" required="" placeholder="john@deo.com">
                                 </div>
                                 <div class="form-group no-box-shadow">
                                     <a href="forgot-password" class="text-danger float-right">Forgot your password?</a>
                                     <label for="password">Password</label>
-                                    <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
+                                    <input class="form-control" name="password" type="password" required="" id="password" placeholder="Enter your password">
                                 </div>
 
                                 <div class="form-group mb-4 pb-3 no-box-shadow">

@@ -1,4 +1,22 @@
 <?php
+session_start();
+$username = isset($_SESSION['user']['username']) ? $_SESSION['user']['username'] : null;
+echo $username;
+// var_dump($_SESSION['user']);
+
+if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
+    header("location: index");
+    exit();
+}
+
+if (isset($_POST["user_signout"])) {
+    var_dump($_POST);
+    session_destroy();
+    header('location: index.php');
+}
+
+
+
 // Includes Global Site URL;
 include("includes/site-info.php");
 ?>
@@ -43,6 +61,9 @@ include("includes/site-info.php");
                             <div>
                                 <h4 class="page-heading mb-3">Welcome !</h4>
                             </div>
+                            <form action="" method="post">
+                                <button type="submit" class="btn btn-danger" name="user_signout">Logout</button>
+                            </form>
                         </div>
                     </div>
                     <!-- end row -->
@@ -126,7 +147,7 @@ include("includes/site-info.php");
                     </div>
                     <!-- end row -->
 
-             
+
                     <!-- end row -->
 
                 </div>
@@ -148,7 +169,7 @@ include("includes/site-info.php");
 
 
 
-    <?php include("includes/footer-scripts.php");?>
+    <?php include("includes/footer-scripts.php"); ?>
 
     <script src="assets/libs/morris-js/morris.min.js"></script>
     <script src="assets/libs/raphael/raphael.min.js"></script>
@@ -156,5 +177,8 @@ include("includes/site-info.php");
     <script src="assets/js/pages/dashboard.init.js"></script>
 
 
+
 </body>
+
+
 </html>
