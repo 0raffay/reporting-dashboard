@@ -3,6 +3,20 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+
+if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
+    header("location: index");
+    exit();
+}
+
+if (isset($_POST["user_signout"])) {
+    var_dump($_POST);
+    session_destroy();
+    header('location: index.php');
+}
+
+
+
 if (isset($_SESSION['user'])) {
 
     $userPermissions = [
@@ -61,7 +75,7 @@ if (isset($_SESSION['user'])) {
                 </a>
             </div>
 
-            <div id="navigation">
+            <div id="navigation" class="d-flex align-items-center justify-content-between">
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
 
@@ -149,25 +163,44 @@ if (isset($_SESSION['user'])) {
                         </a>
                     </li>
 
-
+<!-- 
                     <li class="has-submenu">
                         <a href="profile">
                             <i class="ti-info-alt"></i>Profile
                         </a>
-                    </li>
+                    </li> -->
 
                     <?php if ($userPermissions['type'] == 2) : ?>
                         <li class="has-submenu">
-                            <a href="create">
-                                <i class="ti-info-alt"></i>User
+                            <a href="javscript:;">
+                                <i class="ti-headphone-alt"></i>Users
                             </a>
+                            <ul class="submenu">
+                                <li><a href="users/create-user.php">Create User</a></li>
+                                <li><a href="view-users.php">View All Users</a></li>
+                            </ul>
                         </li>
+                        <!-- <li class="has-submenu">
+                            <a href="create">
+                                <i class="ti-info-alt"></i>Users
+                            </a>
+                        </li> -->
                     <?php endif; ?>
 
 
                 </ul>
                 <!-- End navigation menu -->
-
+                <div id="user_info" class="d-flex gap-10 align-items-center">
+                    <h6 class="text-white my-0 text-uppercase">
+                        User Name:
+                        <span class="text-capitalize">
+                            <?php echo $username; ?>
+                        </span>
+                    </h6>
+                    <form action="" method="post">
+                        <button type="submit" class="btn btn-danger" name="user_signout">Logout</button>
+                    </form>
+                </div>
                 <div class="clearfix"></div>
             </div>
             <!-- end #navigation -->

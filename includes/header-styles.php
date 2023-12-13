@@ -1,5 +1,5 @@
 <?php // include 'config.php'; ?>
-
+<base href="<?php echo $site_url; ?>">
 <!-- App favicon -->
 <link rel="shortcut icon" href="assets/images/favicon.ico">
 <!-- App css -->

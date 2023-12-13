@@ -9,6 +9,7 @@ include("../includes/site-info.php");
 <head>
   <title>Add Contract</title>
 
+ 
   <!-- Compatibility -->
   <?php include("../includes/compatibility.php"); ?>
   <!-- Compatibility -->

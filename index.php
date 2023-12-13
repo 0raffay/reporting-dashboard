@@ -9,9 +9,11 @@ if (isset($_SESSION['user'])) {
 include("includes/site-info.php");
 
 if (isset($_POST["user_signin"])) {
+
+    global $site_url;
     $postData = ['email' => $_POST['email'], 'password' => $_POST['password']];
 
-    $apiEndpoint = 'http://localhost/reporting-dashboard/api/users/login.php';
+    $apiEndpoint = $site_url . '/api/users/login.php';
     $request = curl_init($apiEndpoint);
 
     curl_setopt($request, CURLOPT_POST, 1);
