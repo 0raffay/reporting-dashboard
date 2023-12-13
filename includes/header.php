@@ -12,7 +12,8 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
 if (isset($_POST["user_signout"])) {
     var_dump($_POST);
     session_destroy();
-    header('location: index.php');
+    header('location: ../reporting-dashboard/index.php');
+    exit();
 }
 
 
@@ -162,7 +163,7 @@ if (isset($_SESSION['user'])) {
                         </a>
                     </li>
 
-<!-- 
+                    <!-- 
                     <li class="has-submenu">
                         <a href="profile">
                             <i class="ti-info-alt"></i>Profile
@@ -197,11 +198,11 @@ if (isset($_SESSION['user'])) {
                                 <?php echo $username; ?>
                             </span>
                         </h6>
-                       
+
                     </div>
                     <form action="" method="post">
                         <div class="">
-                            <a class="btn btn-white d-block mb-1 w-100" href="users/edit-user.php?id=<?php echo $_SESSION["user"]["id"];?>">Edit Profile</a>
+                            <a class="btn btn-white d-block mb-1 w-100" href="users/edit-user.php?id=<?php echo $_SESSION["user"]["id"]; ?>">Edit Profile</a>
                             <button type="submit" class="btn btn-danger d-block w-100" name="user_signout">Logout</button>
                         </div>
                     </form>
@@ -312,6 +313,24 @@ if (isset($_SESSION['user'])) {
         <li> <a href="administration">
                 <i class="ti-info-alt mr-2"></i>Administration
             </a></li>
+
+        <?php if ($userPermissions['type'] == 2) : ?>
+            <li class="rf--mobileSubmenu-button">
+                <span class="closeIcon">
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </span>
+                <span class="openIcon">
+                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                </span>
+                <a href="javscript:;">
+                    <i class="ti-headphone-alt"></i>Users
+                </a>
+                <ul class="rf--mobile-submenu">
+                    <li><a href="users/create-user.php">Create User</a></li>
+                    <li><a href="users/view-users.php">View All Users</a></li>
+                </ul>
+            </li>
+        <?php endif; ?>
 
 
     </ul>

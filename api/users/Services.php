@@ -128,6 +128,11 @@ class Services
     public function updateUser($userData)
     {
         try {
+
+            session_start();
+            //$loggedInUserId = $_SESSION['user']['id'];
+            $currentUserType = $_SESSION['user']['type'];
+
             $userId = $userData['id'];
             $usersData = [
                 'username' => $userData['username'],
@@ -143,8 +148,12 @@ class Services
                 'report' => $userData['report'],
             ];
 
-            $this->updateUserTable($userId, $usersData);
-            $this->updateUserAccessTable($userId, $userAccessData);
+            if ($currentUserType == 1) {
+                $this->updateUserTable($userId, $usersData);
+            } else {
+                $this->updateUserTable($userId, $usersData);
+                $this->updateUserAccessTable($userId, $userAccessData);
+            }
 
             return ['success' => true];
         } catch (Exception $e) {

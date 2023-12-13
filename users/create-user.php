@@ -3,6 +3,8 @@ session_start();
 // Includes Global Site URL;
 include("../includes/site-info.php");
 $error = "";
+global $site_url;
+
 if (isset($_POST["create_user"])) {
     $postData = [
         'empId' => $_POST['empId'],
@@ -17,7 +19,7 @@ if (isset($_POST["create_user"])) {
         'report' => $_POST['report']
     ];
 
-    $apiEndpoint = 'http://localhost/reporting-dashboard/api/users/create.php';
+    $apiEndpoint = $site_url . '/api/users/create.php';
     $request = curl_init($apiEndpoint);
 
     curl_setopt($request, CURLOPT_POST, 1);
@@ -101,7 +103,7 @@ if (isset($_POST["create_user"])) {
                         <!-- end row -->
 
 
-                        <form class="form-horizontal"  action="" method="post">
+                        <form class="form-horizontal" action="" method="post">
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label" for="empId">Empolyee Id:</label>
                                 <div class="col-md-10">

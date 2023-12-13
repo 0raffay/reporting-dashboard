@@ -2,10 +2,12 @@
 // Includes Global Site URL;
 include("includes/site-info.php");
 
+global $site_url;
+
 if (isset($_POST["forgot_pass"])) {
     $postData = ['email' => $_POST['email']];
 
-    $apiEndpoint = 'http://localhost/reporting-dashboard/api/users/forgot.php';
+    $apiEndpoint = $site_url . '/api/users/forgot.php';
     $request = curl_init($apiEndpoint);
 
     curl_setopt($request, CURLOPT_POST, 1);

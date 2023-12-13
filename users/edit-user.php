@@ -8,7 +8,8 @@ $error = "";
 //<-----------GET REQUEST TO FETCH THE DATA OF THE LOGGED USER----------->
 if (isset($_SESSION['user']['id'])) {
     $userId = $_SESSION['user']['id'];
-    $apiEndpoint = 'http://localhost/reporting-dashboard/api/users/show.php?id=' . $userId;
+    global $site_url;
+    $apiEndpoint = $site_url . '/api/users/show.php?id=' . $userId;
 
     $apiResponse = file_get_contents($apiEndpoint);
     if ($apiResponse !== false) {
@@ -35,13 +36,18 @@ if (isset($_POST["update_user"])) {
         'id' => $_SESSION['user']['id'],
         'username' => $_POST['username'],
         'email' => $_POST['email'],
-        'client' => $_POST['client'],
-        'contracts' => $_POST['contracts'],
-        'invoice' => $_POST['invoice'],
-        'equipment' => $_POST['equipment'],
-        'staff' => $_POST['staff'],
-        'report' => $_POST['report']
     ];
+
+    if ($_SESSION['user']['type'] != 1) {
+        $postData += [
+            'client' => $_POST['client'],
+            'contracts' => $_POST['contracts'],
+            'invoice' => $_POST['invoice'],
+            'equipment' => $_POST['equipment'],
+            'staff' => $_POST['staff'],
+            'report' => $_POST['report']
+        ];
+    }
 
     $apiEndpoint = 'http://localhost/reporting-dashboard/api/users/update.php';
     $request = curl_init($apiEndpoint);
@@ -148,12 +154,7 @@ if (isset($_POST["update_user"])) {
                                 </div>
                                 <hr>
                             <?php endif; ?>
-                            <div class="form-group row">
-                                <label class="col-md-2 col-form-label" for="empId">Empolyee Id:</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="empId" name="empId" value="<?php echo $userData['empId']; ?>" required>
-                                </div>
-                            </div>
+
                             <div class="form-group form-group row">
                                 <label class="col-md-2 col-form-label" for="name">Name:</label>
                                 <div class="col-md-10">
@@ -169,14 +170,7 @@ if (isset($_POST["update_user"])) {
                                     <input type="email" id="email" name="email" value="<?php echo $userData['email']; ?>" required class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group form-group row">
-                                <label class="col-md-2 col-form-label" for="password">Password:</label>
-                                <div class="col-md-10">
-                                    <div class="input-group">
-                                        <input class="form-control" type="password" id="password" name="password" value="john@123" required>
-                                    </div>
-                                </div>
-                            </div>
+
                             <?php if ($userPermissions['type'] == 2) : ?>
                                 <div class="form-group row">
                                     <!-- Rights checkboxes -->
@@ -237,7 +231,7 @@ if (isset($_POST["update_user"])) {
                             <!-- button -->
                             <div class="form-group btn-form-group row mb-0 pt-4">
                                 <div class="col-md-7 m-auto">
-                                    <button type="submit" value="Create User" name="create_user" class="btn btn-primary btn-lg w-100 d-block">
+                                    <button type="submit" value="Create User" name="update_user" class="btn btn-primary btn-lg w-100 d-block">
                                         Update User
                                     </button>
                                 </div>

@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION)) {
+if (!isset($_SESSION)) {
     session_start();
 }
 
@@ -12,4 +12,3 @@ $site_url = "http://localhost/reporting-dashboard/";
 
 global $username;
 $username = isset($_SESSION['user']['username']) ? $_SESSION['user']['username'] : null;
-
