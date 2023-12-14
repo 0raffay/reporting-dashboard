@@ -4308,3 +4308,25 @@ ul.mobile__list {
 .fw-700 {
     font-weight: 700;
 }
+
+.error {
+    outline: 1px solid red !important;
+}
+.error_message {
+    display: none;
+    text-transform: capitalize;
+}
+.error + .error_message {
+    display: block;
+}
+
+.create_form_user .error_message {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    margin: 0;
+
+}
+.create_form_user .form-group {
+    margin-bottom: 35px;
+}

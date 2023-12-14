@@ -4,10 +4,10 @@ if (!isset($_SESSION)) {
 }
 
 //LOCAL:
-$site_url = "http://localhost/reporting-dashboard/";
+// $site_url = "http://localhost/reporting-dashboard/";
 
 //LIVE:
-// $site_url = "https://arraydigitals.com/reporting-dashboard/";
+$site_url = "https://arraydigitals.com/reporting-dashboard/";
 
 
 global $username;

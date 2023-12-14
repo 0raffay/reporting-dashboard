@@ -7,7 +7,6 @@ global $site_url;
 
 if (isset($_POST["create_user"])) {
     $postData = [
-        'empId' => $_POST['empId'],
         'username' => $_POST['username'],
         'email' => $_POST['email'],
         'password' => $_POST['password'],
@@ -38,8 +37,8 @@ if (isset($_POST["create_user"])) {
     } else {
         $response = json_decode($apiResponse, true);
 
-        if (isset($responseData['error']) && $responseData['error']) {
-            $error = 'Error creating user: ' . $responseData['message'];
+        if (isset($response['error']) && $response['error']) {
+            $error = 'Error creating user: ' . $response['message'];
         } else {
             $error = 'User created successfully.';
         }
@@ -104,12 +103,7 @@ if (isset($_POST["create_user"])) {
 
 
                         <form class="form-horizontal" action="" method="post">
-                            <div class="form-group row">
-                                <label class="col-md-2 col-form-label" for="empId">Empolyee Id:</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="empId" name="empId" required>
-                                </div>
-                            </div>
+
                             <div class="form-group form-group row">
                                 <label class="col-md-2 col-form-label" for="name">Name:</label>
                                 <div class="col-md-10">

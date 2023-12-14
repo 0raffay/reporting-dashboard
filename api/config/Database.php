@@ -2,9 +2,9 @@
 class Database
 {
     private $host = 'localhost';
-    private $user = 'root';
-    private $password = '';
-    private $database = 'air_rite';
+    private $user = 'arrauuqq_rite';
+    private $password = 'arrauuqq_rite';
+    private $database = 'arrauuqq_rite';
 
     public function getConnection()
     {

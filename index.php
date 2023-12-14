@@ -8,8 +8,9 @@ if (isset($_SESSION['user'])) {
 // Includes Global Site URL;
 include("includes/site-info.php");
 
-if (isset($_POST["user_signin"])) {
+$error = "";
 
+if (isset($_POST["user_signin"])) {
     global $site_url;
     $postData = ['email' => $_POST['email'], 'password' => $_POST['password']];
 
@@ -39,7 +40,7 @@ if (isset($_POST["user_signin"])) {
             header("location: dashboard");
             exit();
         } else {
-            echo 'Login failed. Please check your credentials.';
+            $error =  'Login failed. Please check your credentials.';
         }
     }
 
@@ -80,25 +81,31 @@ if (isset($_POST["user_signin"])) {
 
                             </div>
                             <h4 class="page-heading">Login to your Account</h4>
-                            <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>" class="p-2">
+                            <form method="POST"  action="<?php echo $_SERVER['PHP_SELF']; ?>" class="p-2" data-login-form novalidate>
                                 <div class="form-group no-box-shadow">
                                     <label for="emailaddress">Email address</label>
-                                    <input class="form-control" name="email" type="email" id="emailaddress" required="" placeholder="john@deo.com">
+                                    <input class="form-control login_email" data-validate-login validate-login-regex="^[^\s@]+@[^\s@]+\.[^\s@]+$" name="email" type="email" id="emailaddress" required="" placeholder="john@deo.com">
+                                    <p class="error_message text-danger">Enter a correct email address.</p>
                                 </div>
                                 <div class="form-group no-box-shadow">
                                     <a href="forgot-password" class="text-danger float-right">Forgot your password?</a>
                                     <label for="password">Password</label>
-                                    <input class="form-control" name="password" type="password" required="" id="password" placeholder="Enter your password">
+                                    <input class="form-control" data-validate-login name="password" type="password" required="" id="password" placeholder="Enter your password">
+                                    <p class="error_message text-danger">Enter a correct password.</p>
                                 </div>
 
-                                <div class="form-group mb-4 pb-3 no-box-shadow">
+                                <div class="form-group mb-2 no-box-shadow">
                                     <div class="custom-control custom-checkbox checkbox-primary">
                                         <input type="checkbox" class="custom-control-input" id="checkbox-signin">
                                         <label class="custom-control-label" for="checkbox-signin">Remember me</label>
                                     </div>
                                 </div>
+
+                                <p class="text-danger text-center mb-4 pb-2"><?php print_r($error);?></p>
+
+                        
                                 <div class="mb-3 text-center">
-                                    <button class="btn btn-primary btn-block" type="submit" name="user_signin"> Sign In </button>
+                                    <button class="btn btn-primary btn-block" data-login type="submit" name="user_signin"> Sign In </button>
                                 </div>
                             </form>
                         </div>

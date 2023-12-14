@@ -32,7 +32,7 @@ if (isset($_POST["forgot_pass"])) {
             echo "Please check your email";
             exit();
         } else {
-            echo 'Some Problem occurred';
+            echo '';
         }
     }
 

@@ -30,12 +30,22 @@ class Services
             $stmtExistingUser->store_result();
 
             if ($stmtExistingUser->num_rows > 0) {
-                echo "User with this email already exists.";
                 $stmtExistingUser->close();
+                throw new Exception("User with this email already exists.");
                 return;
             }
 
-            [$empId, $username, $email, $password] = array_values($userData);
+            $query = "SELECT COALESCE(MAX(empId),0) AS maxEmpId FROM users";
+            $result = $this->dbConnect->query($query);
+
+            if ($result) {
+                $row = $result->fetch_assoc();
+                $maxEmpId = $row['maxEmpId'];
+                $newEmpId = $maxEmpId + 1;
+                echo "Next empId: $newEmpId";
+            }
+
+            [$username, $email, $password] = array_values($userData);
             $userQuery = "INSERT INTO " . $this->userTable . " (empId, username, email, password) VALUES (?, ?, ?, ?)";
             $stmt = $this->dbConnect->prepare($userQuery);
 
@@ -44,7 +54,7 @@ class Services
             };
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $stmt->bind_param("isss", $empId, $username, $email, $hashedPassword);
+            $stmt->bind_param("isss", $newEmpId, $username, $email, $hashedPassword);
 
             if ($stmt->execute()) {
                 echo "User added successfully";

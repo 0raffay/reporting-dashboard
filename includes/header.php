@@ -12,7 +12,7 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
 if (isset($_POST["user_signout"])) {
     var_dump($_POST);
     session_destroy();
-    header('location: ../reporting-dashboard/index.php');
+    header('location: index.php');
     exit();
 }
 
